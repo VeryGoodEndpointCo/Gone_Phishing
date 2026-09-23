@@ -9,9 +9,9 @@ using System.Security;
 [assembly: AssemblyTitle("Gone Phishing")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("iron-jay")]
+[assembly: AssemblyCompany("Very Good Endpoint Co.")]
 [assembly: AssemblyProduct("Gone_Phishing")]
-[assembly: AssemblyCopyright("Copyright ©  2024")]
+[assembly: AssemblyCopyright("Copyright © 2024 Very Good Endpoint Co.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

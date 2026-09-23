@@ -39,9 +39,9 @@ wins:
 
 | Order | Hive | Key | Set by |
 | --- | --- | --- | --- |
-| 1 | `HKLM` | `Software\Policies\iron-jay\GonePhishing` | Computer policy |
-| 2 | `HKCU` | `Software\Policies\iron-jay\GonePhishing` | User policy |
-| 3 | `HKLM` | `Software\iron-jay\GonePhishing` | The installer |
+| 1 | `HKLM` | `Software\Policies\Very Good Endpoint Co\GonePhishing` | Computer policy |
+| 2 | `HKCU` | `Software\Policies\Very Good Endpoint Co\GonePhishing` | User policy |
+| 3 | `HKLM` | `Software\Very Good Endpoint Co\GonePhishing` | The installer |
 
 So **policy supersedes the installed value** — you can retarget a deployed fleet by GPO without
 reinstalling, and without having to clear what the installer wrote. Every location is one only an
@@ -59,8 +59,8 @@ The administrative template lets the two settings be managed from the Group Poli
 than as raw registry values. The MSI installs it beside the assembly:
 
 ```
-C:\Program Files\iron-jay\Gone Phishing\Policies\GonePhishing.admx
-C:\Program Files\iron-jay\Gone Phishing\Policies\en-US\GonePhishing.adml
+C:\Program Files\Very Good Endpoint Co\Gone Phishing\Policies\GonePhishing.admx
+C:\Program Files\Very Good Endpoint Co\Gone Phishing\Policies\en-US\GonePhishing.adml
 ```
 
 Installing it doesn't put any policy into effect — copy the contents of `Policies`, keeping the
@@ -71,7 +71,7 @@ Installing it doesn't put any policy into effect — copy the contents of `Polic
 \\<domain>\SYSVOL\<domain>\Policies\PolicyDefinitions\en-US\GonePhishing.adml
 ```
 
-They then appear under **Administrative Templates → iron-jay → Gone Phishing**, at both computer
+They then appear under **Administrative Templates → Very Good Endpoint Co. → Gone Phishing**, at both computer
 and user scope. The source copies live in `Policies/` in this repo.
 
 ## Building

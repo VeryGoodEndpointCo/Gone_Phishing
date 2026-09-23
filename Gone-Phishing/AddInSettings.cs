@@ -14,13 +14,13 @@ namespace Gone_Phishing
         /// Where the ADMX template writes. Keys under Software\Policies are ACL'd against
         /// standard users and removed when the policy stops applying.
         /// </summary>
-        internal const string PolicyKeyPath = @"Software\Policies\iron-jay\GonePhishing";
+        internal const string PolicyKeyPath = @"Software\Policies\Very Good Endpoint Co\GonePhishing";
 
         /// <summary>
         /// Where the installer writes the defaults supplied on the msiexec command line. Under
         /// HKLM, so it is administrator-writable only; policy takes precedence over it.
         /// </summary>
-        internal const string InstallKeyPath = @"Software\iron-jay\GonePhishing";
+        internal const string InstallKeyPath = @"Software\Very Good Endpoint Co\GonePhishing";
 
         /// <summary>
         /// Where the add-in registers itself with Outlook. Settings are deliberately not read

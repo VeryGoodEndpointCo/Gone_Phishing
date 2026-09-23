@@ -23,10 +23,10 @@
   <?define AddInKey = "Software\Microsoft\Office\Outlook\Addins\GonePhishing.Connect" ?>
   <?define LegacyAddInKey = "Software\Microsoft\Office\Outlook\Addins\GonePhishing" ?>
   <!-- Settings live apart from the COM registration so uninstalling one never disturbs the other. -->
-  <?define SettingsKey = "Software\iron-jay\GonePhishing" ?>
+  <?define SettingsKey = "Software\Very Good Endpoint Co\GonePhishing" ?>
 
   <Package Name="Gone Phishing"
-           Manufacturer="iron-jay"
+           Manufacturer="Very Good Endpoint Co."
            Version="1.6.0.0"
            UpgradeCode="8F119238-0A06-4A99-8C0E-5E9F7EB9B7E1"
            Scope="perMachine"
@@ -69,7 +69,7 @@
     <Property Id="PREFIX" Secure="yes" />
 
     <StandardDirectory Id="ProgramFiles6432Folder">
-      <Directory Id="MANUFACTURERFOLDER" Name="iron-jay">
+      <Directory Id="MANUFACTURERFOLDER" Name="Very Good Endpoint Co">
         <Directory Id="INSTALLFOLDER" Name="Gone Phishing">
           <!-- The .adml must sit in a language subfolder beside the .admx, so the contents of
                Policies mirror what the Group Policy Central Store expects and can be copied

@@ -6,7 +6,7 @@
                    xmlns="http://schemas.microsoft.com/GroupPolicy/2006/07/PolicyDefinitions">
 
   <policyNamespaces>
-    <target prefix="gonephishing" namespace="IronJay.Policies.GonePhishing" />
+    <target prefix="gonephishing" namespace="VeryGoodEndpointCo.Policies.GonePhishing" />
   </policyNamespaces>
 
   <resources minRequiredRevision="1.0" />
@@ -18,9 +18,9 @@
   </supportedOn>
 
   <categories>
-    <category name="IronJay" displayName="$(string.IronJay)" />
+    <category name="VeryGoodEndpointCo" displayName="$(string.VeryGoodEndpointCo)" />
     <category name="GonePhishing" displayName="$(string.GonePhishing)" explainText="$(string.GonePhishing_Explain)">
-      <parentCategory ref="IronJay" />
+      <parentCategory ref="VeryGoodEndpointCo" />
     </category>
   </categories>
 
@@ -34,7 +34,7 @@
             class="Both"
             displayName="$(string.ReportTo)"
             explainText="$(string.ReportTo_Explain)"
-            key="Software\Policies\iron-jay\GonePhishing"
+            key="Software\Policies\Very Good Endpoint Co\GonePhishing"
             presentation="$(presentation.ReportTo)">
       <parentCategory ref="GonePhishing" />
       <supportedOn ref="SUPPORTED_GonePhishing_1_0" />
@@ -47,7 +47,7 @@
             class="Both"
             displayName="$(string.Prefix)"
             explainText="$(string.Prefix_Explain)"
-            key="Software\Policies\iron-jay\GonePhishing"
+            key="Software\Policies\Very Good Endpoint Co\GonePhishing"
             presentation="$(presentation.Prefix)">
       <parentCategory ref="GonePhishing" />
       <supportedOn ref="SUPPORTED_GonePhishing_1_0" />
