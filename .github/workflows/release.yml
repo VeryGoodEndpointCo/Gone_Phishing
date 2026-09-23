@@ -1,0 +1,67 @@
+name: Release
+
+# Pushing a v* tag builds the MSI and publishes it as a release. Pushes to master run the same
+# build without publishing, so a broken build shows up before anything is tagged.
+
+on:
+  push:
+    branches: [master]
+    tags:
+      - 'v*'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Add MSBuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      # The Office interop types come from the runner's Office workload. WiX comes from NuGet
+      # through the restore.
+      - name: Build
+        run: msbuild Gone_Phishing.sln /t:Restore,Build /p:Configuration=Release /p:Platform=x64 /v:minimal
+
+      - name: Check the tag matches the package version
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        run: |
+          $wxs = Get-Content GP_Setup\Package.wxs -Raw
+          if ($wxs -notmatch '<Package[^>]*\sVersion="([^"]+)"') { throw 'No Version on <Package> in Package.wxs.' }
+          $package = [version]$Matches[1]
+          $tag = [version]('${{ github.ref_name }}'.TrimStart('v'))
+          # MSI versions have three significant fields; the fourth is ignored by upgrades.
+          if ($package.Major -ne $tag.Major -or $package.Minor -ne $tag.Minor -or $package.Build -ne $tag.Build) {
+            throw "Tag ${{ github.ref_name }} does not match Package.wxs version $package."
+          }
+
+      - name: Collect assets
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path dist | Out-Null
+          $name = if ('${{ github.ref }}'.StartsWith('refs/tags/')) { "GonePhishing-$('${{ github.ref_name }}'.TrimStart('v')).msi" } else { 'GonePhishing.msi' }
+          Copy-Item GP_Setup\bin\x64\Release\GonePhishing.msi "dist\$name"
+          Get-ChildItem dist | Format-Table Name, Length
+
+      - name: Upload build
+        if: "!startsWith(github.ref, 'refs/tags/')"
+        uses: actions/upload-artifact@v4
+        with:
+          name: GonePhishing
+          path: dist/
+
+      - name: Publish release
+        if: startsWith(github.ref, 'refs/tags/')
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create "${{ github.ref_name }}" (Get-ChildItem dist | ForEach-Object FullName) `
+            --title "Gone Phishing ${{ github.ref_name }}" `
+            --generate-notes
