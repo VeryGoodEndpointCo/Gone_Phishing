@@ -27,7 +27,7 @@
 
   <Package Name="Gone Phishing"
            Manufacturer="Very Good Endpoint Co."
-           Version="1.6.0.0"
+           Version="1.7.0.0"
            UpgradeCode="8F119238-0A06-4A99-8C0E-5E9F7EB9B7E1"
            Scope="perMachine"
            Compressed="yes"
